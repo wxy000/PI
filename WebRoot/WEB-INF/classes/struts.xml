@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 限制文件上传大小为1T -->
+	<constant name="struts.multipart.maxSize" value="1099511627776"></constant>
+	<package name="pi" namespace="/" extends="struts-default">
+	
+		<!--#2 配置拦截器 -->
+		<interceptors>
+			<!-- #2.1 注册拦截器 -->
+			<interceptor name="loginInterceptor" class="cn.pi.action.LoginInterceptor" />
+			<!-- #2.2 引用已经注册的拦截器，形成自定义拦截器栈 * 注意：自定义拦截器栈，将覆盖到默认栈 ，必须手动再自定义拦截器栈中 引用默认栈 -->
+			<interceptor-stack name="loginStack">
+				<!-- #2.2.1 引用默认 -->
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<!-- #2.2.2 引用自定义拦截器-->
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- #2.3 修改当前<package>默认栈，此时 package下的所有的action都将使用此栈 -->
+		<default-interceptor-ref name="loginStack"></default-interceptor-ref>
+		
+		<!-- 全局结果集 -->
+		<global-results>
+			<!-- 没有登录 -->
+			<result name="nonlogin" type="redirect">/login.jsp</result>
+		</global-results>
+	
+		<action name="userAction_*" class="userAction" method="{1}">
+			<result name="index" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">homeAction</param>
+			</result>
+			<result name="login" type="redirect">/login.jsp</result>
+			<result name="register" type="redirect">/register.jsp</result>
+			<result name="jibenziliao" type="redirect">/s_user_jibenziliao.jsp</result>
+			<result name="xiugaimima" type="redirect">/s_user_xiugaimima.jsp</result>
+		</action>
+		
+		<!-- 重定向到首页 -->
+		<action name="homeAction">
+			<result>/index.jsp</result>
+		</action>
+		
+		<action name="userHeaderupload_*" class="userHeaderUploadAction" method="{1}"></action>
+		
+		<action name="friendsAction_*" class="friendsAction" method="{1}">
+			<result name="friendslist" type="redirect">/z_tongxun_lianxirenguanli.jsp</result>
+		</action>
+		
+		<action name="filesAction_*" class="filesAction" method="{1}">
+			<result name="fileslist" type="redirect">/z_ziliao_{1}.jsp</result>
+			<result name="doc" type="redirect">/z_ziliao_shuji.jsp</result>
+			<result name="music" type="redirect">/z_ziliao_yinyue.jsp</result>
+			<result name="video" type="redirect">/z_ziliao_shipin.jsp</result>
+			<result name="photo" type="redirect">/z_ziliao_zhaopian.jsp</result>
+		</action>
+		
+		<action name="filesDownload" class="filesDownloadAction">
+			<result type="stream">
+				<!-- 文件类型 -->
+				<param name="contentType">${contentTypex}</param>
+				<!-- 文件名 -->
+				<param name="contentDisposition">attachment;filename=${filenamex}</param>
+				<!-- 输入流 -->
+				<param name="inputName">downloadFile</param>
+			</result>
+		</action>
+		
+		<action name="calendarAction_*" class="calendarAction" method="{1}">
+			<result name="calendarlist" type="redirect">/z_richengguanli.jsp</result>
+		</action>
+		
+		<action name="mainAction" class="mainAction">
+			<result name="mainx" type="redirect">/main.jsp</result>
+		</action>
+		
+	</package>
+</struts>

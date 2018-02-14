@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.pi.model.Calendar" table="calendar">
+		<id name="calendarid" column="calendarid">
+			<generator class="native"></generator>
+		</id>
+		<!-- 普通属性 -->
+		<property name="start_time"/>
+		<property name="end_time" />
+		<property name="calendartitle" />
+		<property name="calendarcontent" />
+        <!--多对一关系映射 -->
+		<many-to-one name="user" class="cn.pi.model.User" column="userId" />
+	</class>
+</hibernate-mapping>

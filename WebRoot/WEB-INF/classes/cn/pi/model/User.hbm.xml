@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.pi.model.User" table="user">
+		<id name="userId" column="userId">
+			<generator class="native"></generator>
+		</id>
+		<!-- 配置普通属性 -->
+		<property name="userName"/>
+		<property name="password"/>
+		<property name="work"/>
+		<property name="realName"/>
+		<property name="sex"/>
+		<property name="phone"/>
+		<property name="photopath" />
+		<property name="email" />
+		<property name="notes"/>
+        <!--一对多的关系使用set集合映射-->
+        
+        <!-- 1.未设置级联 -->
+ 		<set name="friends" cascade="all">
+            <!--确定关联的外键列 -->
+ 			<key column="userId" />
+            <!--映射到关联类属性 -->
+ 			<one-to-many class="cn.pi.model.Friends" />
+ 		</set>
+
+		
+		<!-- 3.设置级联删除 -->
+<!-- 		<set name="orders" cascade="delete"> -->
+<!-- 			<key column="cid" /> -->
+<!-- 			<one-to-many class="cn.itcast.onetomany.Order" /> -->
+<!-- 		</set> -->
+
+		
+	</class>
+</hibernate-mapping>  

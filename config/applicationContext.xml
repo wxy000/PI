@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans        
+ 	             http://www.springframework.org/schema/beans/spring-beans.xsd
+ 	       		 http://www.springframework.org/schema/context        		 
+ 	             http://www.springframework.org/schema/context/spring-context.xsd
+ 	       		 http://www.springframework.org/schema/tx 
+ 	       		 http://www.springframework.org/schema/tx/spring-tx.xsd
+ 	       		 http://www.springframework.org/schema/aop 
+ 	       		 http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>
+	<!-- 3 配置dao -->
+	<bean id="friendsDao" class="cn.pi.dao.impl.FriendsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory">
+		</property>
+	</bean>
+	<bean id="userDao" class="cn.pi.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory">
+		</property>
+	</bean>
+	<bean id="filesDao" class="cn.pi.dao.impl.FilesDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory">
+		</property>
+	</bean>
+	<bean id="calendarDao" class="cn.pi.dao.impl.CalendarDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory">
+		</property>
+	</bean>
+	<!-- 4 配置service -->
+	<bean id="userService" class="cn.pi.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="friendsService" class="cn.pi.service.impl.FriendsServiceImpl">
+		<property name="friendsDao" ref="friendsDao"></property>
+	</bean>
+	<bean id="filesService" class="cn.pi.service.impl.FilesServiceImpl">
+		<property name="filesDao" ref="filesDao"></property>
+	</bean>
+	<bean id="calendarService" class="cn.pi.service.impl.CalendarServiceImpl">
+		<property name="calendarDao" ref="calendarDao"></property>
+	</bean>
+	<!-- 配置Action -->
+	<bean id="userAction" class="cn.pi.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="userHeaderUploadAction" class="cn.pi.action.UserHeaderUploadAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="friendsAction" class="cn.pi.action.FriendsAction" scope="prototype">
+		<property name="friendsService" ref="friendsService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="filesAction" class="cn.pi.action.FilesAction" scope="prototype">
+		<property name="filesService" ref="filesService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="filesDownloadAction" class="cn.pi.action.FilesDownloadAction" scope="prototype">
+		<property name="filesService" ref="filesService"></property>
+	</bean>
+	<bean id="calendarAction" class="cn.pi.action.CalendarAction" scope="prototype">
+		<property name="calendarService" ref="calendarService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="mainAction" class="cn.pi.action.MainAction" scope="prototype">
+		<property name="calendarService" ref="calendarService"></property>
+		<property name="filesService" ref="filesService"></property>
+		<property name="friendsService" ref="friendsService"></property>
+	</bean>
+	<!-- 事务管理 -->
+	<!-- #1 事务管理器,就是平台，spring工具产生，依赖于使用 持久方案（hibernate、jdbc等） -->
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- #2 通知：增强事务 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="save*" />
+			<tx:method name="update*" />
+			<tx:method name="delete*" />
+			<tx:method name="find*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- #3 切面：将切入点 与 通知 关联 -->
+	<aop:config>
+		<aop:advisor advice-ref="txAdvice"
+			pointcut="execution(* cn.pi.service..*.*(..))" />
+	</aop:config>
+</beans>
