@@ -12,33 +12,33 @@
 	<script type="text/javascript" src="layui-v2.2.5/layui/layui.js"></script>
 </head>
 <style>
-.imgnews-item{position: relative;margin:20px;width:100px;line-height:150px;display:inline;overflow: hidden;}
-.imgnews-item span {
-    background-color: #000;
-    opacity: 0.4;
-    filter: alpha(opacity=40);
-    position: absolute;
-    left: 0;
-    top: 60px;
-    width: 100%;
-    height: 26px;
-    line-height: 26px;
-    overflow: hidden;
-    font-size: 14px;
-    text-align: center;
-}
-.imgnews-item em {
-    position: absolute;
-    left: 0;
-    top: 60px;
-    width: 100%;
-    height: 26px;
-    line-height: 26px;
-    overflow: hidden;
-    font-size: 14px;
-    text-align: center;
-    color:#FFF;font-style: normal;
-}
+.imgnews-item{position: relative;margin:20px;width:100px;line-height:150px;display:inline;overflow: hidden;}  
+.imgnews-item span {  
+    background-color: #000;  
+    opacity: 0.4;  
+    filter: alpha(opacity=40);  
+    position: absolute;  
+    left: 0;  
+    top: 60px;  
+    width: 100%;  
+    height: 26px;  
+    line-height: 26px;  
+    overflow: hidden;  
+    font-size: 14px;  
+    text-align: center;  
+}  
+.imgnews-item em {  
+    position: absolute;  
+    left: 0;  
+    top: 60px;  
+    width: 100%;  
+    height: 26px;  
+    line-height: 26px;  
+    overflow: hidden;  
+    font-size: 14px;  
+    text-align: center;  
+    color:#FFF;font-style: normal;  
+} 
 </style>
 <body style="margin:10px;">
 
@@ -125,8 +125,7 @@ layui.use(['upload','layer'], function(){
 			window.location="filesDownload?fileid="+fid;
 		});
 		$('#shanchu').on('click',function(){
-			window.location="";
-			//filesAction_delete?fileid="+fid+"&type=1
+			window.location="filesAction_delete?fileid="+fid+"&type=1";
 		});
 	}
 	//点击展开文件
@@ -142,7 +141,7 @@ layui.use(['upload','layer'], function(){
 	    	alert("抱歉，该文档无法预览，请您移步下载！");
 	    }
 	});
-
+	
 	//阻止浏览器默认右键点击事件
 	$(".img").bind("contextmenu", function(){
 	    return false;
@@ -166,7 +165,7 @@ layui.use(['upload','layer'], function(){
 	    	layer.closeAll();
 	    }
 	});
-
+	
 	//执行实例
 	upload.render({
 		elem: '#test1' //绑定元素
@@ -174,8 +173,7 @@ layui.use(['upload','layer'], function(){
 		,method: 'post'
 		,accept: 'file'
 		,exts: 'doc|docx|xls|xlsx|ppt|pptx|pdf'
-		,url: '' //上传接口
-		//filesAction_upload?type=1
+		,url: 'filesAction_upload?type=1' //上传接口
 		,before: function(obj){
 			ii = layer.load(1); //上传loading
 		}
@@ -195,7 +193,7 @@ layui.use(['upload','layer'], function(){
 			console.log("aaa");
 		}
 	});
-
+  
 });
 </script>
 </html>

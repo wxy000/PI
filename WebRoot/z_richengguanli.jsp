@@ -33,14 +33,14 @@
 		</div>
 	</div>
 	<hr>
-
+	
 	<div id='calendar'></div>
-
+	
 </div>
 
 </body>
 <div id="xinxi1" hidden style="padding: 30px; line-height: 22px; background-color: #ccc; font-weight: 300;">
-	<form class="layui-form layui-form-pane" action="" method="post"><!--calendarAction_souCalendar-->
+	<form class="layui-form layui-form-pane" action="calendarAction_souCalendar" method="post">
 		<input type="text" name="calendarid" id="ci" hidden>
 		<input type="text" name="userId" value="${userInfo.userId }" id="uid" hidden>
 		<div class="layui-form-item">
@@ -123,7 +123,7 @@ layui.use(['layer','laydate'], function(){
             start.config.max.month = date.month -1;
         }
     });
-
+	
 	//编辑框弹出层
  	var richengliebiao = {
 		list: function(){
@@ -160,7 +160,7 @@ layui.use(['layer','laydate'], function(){
 	//赋值给父页面
 	$('#richengshu', window.parent.document).html(j);
 	window.parent.rcs(j);
-
+    
 	//编辑框弹出层
  	var bianjixinxi = {
 		xinxi: function(){
@@ -179,7 +179,7 @@ layui.use(['layer','laydate'], function(){
 			});
 		}
 	};
-
+	
 	$('.guanbi').on('click', function(){
 		layer.close(x);
 	});
@@ -200,11 +200,11 @@ layui.use(['layer','laydate'], function(){
 		method = othis.data('method');
 		bianjixinxi[method] ? bianjixinxi[method].call(this, othis) : '';
 	});
-
+ 	
  	//中文
 	var initialLocaleCode = 'zh-cn';
 	var params = [];
-	<c:forEach items="${calendarList}" var="c">
+	<c:forEach items="${calendarList}" var="c">  
 		params.push({"id":"${c.calendarid}","title":"${c.calendartitle}","start":"${c.start_time}","end":"${c.end_time}","content":"${c.calendarcontent}"});
 	</c:forEach>
 
@@ -231,8 +231,7 @@ layui.use(['layer','laydate'], function(){
 	 		$("#yinc").show();
 	 		$("#yinc").on('click',function(){
 	 			$('#calendar').fullCalendar('removeEvents', event.id);
-	 			window.location = "";
-				//"calendarAction_delete?calendarid="+event.id
+	 			window.location = "calendarAction_delete?calendarid="+event.id;
 	 		});
 			bianjixinxi.xinxi();
 		},

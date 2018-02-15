@@ -34,7 +34,7 @@
 				<input type="button" value="添加联系人" class="layui-btn xinxi" data-method="xinxi" style="margin-top:-4px;">
 			</div>
 		</form>
-		<hr>
+		<hr>			
 		<table class="layui-table" lay-data="{height: 'full-210',page:true}" lay-filter="demo">
 			<thead>
 				<tr>
@@ -64,12 +64,12 @@
 			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
-
-
+		
+			
 	</div>
 </body>
 <div id="xinxi1" hidden style="padding: 30px; line-height: 22px; background-color: #393D49; font-weight: 300;">
-	<form class="layui-form layui-form-pane" action="" method="post"><!--friendsAction_souFriend-->
+	<form class="layui-form layui-form-pane" action="friendsAction_souFriend" method="post">
 		<input type="text" name="friendId" id="fi" hidden>
 		<input type="text" name="userId" value="${userInfo.userId }" hidden>
 		<div class="layui-form-item">
@@ -125,8 +125,7 @@ layui.use(['table','layer'], function(){
 			layer.confirm('真的删除行么', function(index){
 				obj.del();
 				layer.close(index);
-				window.location = "";
-				//friendsAction_deleteFriend?friendId="+data.id+"
+				window.location = "friendsAction_deleteFriend?friendId="+data.id+"";
 			});
 		} else if(obj.event === 'edit'){
 			$("#fi").val(data.id);
@@ -138,7 +137,7 @@ layui.use(['table','layer'], function(){
 			bianjixinxi.xinxi();
 		}
 	});
-
+	
 	//编辑框弹出层
  	var bianjixinxi = {
 		xinxi: function(){

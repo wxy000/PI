@@ -31,7 +31,7 @@
 			<li class="layui-nav-item"><a href="javascript:;" onClick="logout()">登出</a></li>
 		</ul>
 	</div>
-
+  
 	<div class="layui-side layui-bg-black">
 		<div class="layui-side-scroll">
 			<!-- 管理员信息      -->
@@ -70,10 +70,10 @@
 			</ul>
 		</div>
 	</div>
-
+  
 	<div class="layui-body">
 		<!-- 内容主体区域 -->
-
+		
 		<div class="layui-tab" lay-filter="demo" lay-allowclose="true">
 			<div class="go-left key-press" title="折叠（假的，不想做）"><i class="layui-icon">&#xe603;</i></div>
   			<ul class="layui-tab-title">
@@ -81,7 +81,7 @@
     				<i class="layui-icon xianshi" style="font-size: 18px;">&#xe68e;</i>&nbsp;<em>首页</em>
     			</li>
   			</ul>
-
+  			
   			<div class="title-right">
                 <div class="refresh key-press"><i class="layui-icon" style="font-size: 18px;">&#x1002;</i><cite>刷新</cite></div>
                 <div class="often key-press">
@@ -104,7 +104,7 @@
                             </dl>
                         </li>
                     </ul>
-                </div>
+                </div>                    
             </div>
   			<div style="border-bottom:1px #1AA094 solid;height:40px;background:#fafafa"></div>
   			<div class="layui-tab-content">
@@ -113,11 +113,11 @@
     			</div>
   			</div>
 		</div>
-
-
-	</div>
-
-
+		
+		
+	</div>		
+		
+  
 	<div class="layui-footer" style="background:#ccc;">
 		<!-- 底部固定区域 -->
 		© wxy - 版权所有<div id="time" style="float:right;"></div>
@@ -137,7 +137,7 @@ layui.use(['element','layer'], function(){
 		var now=(new Date()).toLocaleString();
 		$("#time").html(now);
 	});
-
+	
     var active = {
     	tabAdd: function (url, id, title) {
         	//新增一个Tab项
@@ -230,12 +230,12 @@ layui.use(['element','layer'], function(){
             $(this).height($content.height());
         });
     }
-
- 	// 窗口自适应
+    
+ 	// 窗口自适应    
     $(window).on('resize', function () {
     	FrameWH();
     }).resize();
-
+ 	
  	//系统公告弹出层
  	var tanchu = {
 		notice: function(){
@@ -250,7 +250,7 @@ layui.use(['element','layer'], function(){
 				,btn: ['火速围观', '哦，知道了']
 				,btnAlign: 'c'
 				,moveType: 1 //拖拽模式，0或者1
-				,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br>你不知道（调皮）<br><br>本站源码已上传至GitHub：https://github.com/wxy000/PI<br><br>这个项目是《Java Web开发》的课程设计，由于所使用的后端框架SSH以及前端UI框架LayUI是现学现卖的，所以多有不足，后期可能会继续完善。</div>'
+				,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">你知道吗？亲！<br>你不知道（调皮）<br><br>本站源码已上传至GitHub：。。。<br><br>这个项目是《Java Web开发》的课程设计，由于所使用的后端框架SSH以及前端UI框架LayUI是现学现卖的，所以多有不足，后期可能会继续完善。</div>'
 				,success: function(layero){
 					var btn = layero.find('.layui-layer-btn');
 			    	btn.find('.layui-layer-btn0').attr({

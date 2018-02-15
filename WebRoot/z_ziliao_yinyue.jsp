@@ -109,12 +109,12 @@
 </body>
 <script>
 var path = "${pageContext.request.contextPath }";
-var f1 = new Array();
-var f2 = new Array();
-var f3 = new Array();
-var f4 = new Array();
-<c:forEach items="${filesList}" var="t">
-	f1.push("${t.filename}"); //js中可以使用此标签，将EL表达式中的值push到数组中
+var f1 = new Array();  
+var f2 = new Array();  
+var f3 = new Array();  
+var f4 = new Array();  
+<c:forEach items="${filesList}" var="t">  
+	f1.push("${t.filename}"); //js中可以使用此标签，将EL表达式中的值push到数组中  
 	f2.push("${t.singer}");
 	f3.push(secondToDate(${t.time}));
 	f4.push("${t.path}");
@@ -149,8 +149,7 @@ layui.use(['table','upload','layer'], function(){
 			layer.confirm('真的删除行么', function(index){
 				obj.del();
 				layer.close(index);
-				window.location = "";
-				//filesAction_delete?fileid="+data.id+"&type=2
+				window.location = "filesAction_delete?fileid="+data.id+"&type=2";
 			});
 		} else if(obj.event === 'download'){
 			window.location = "filesDownload?fileid="+data.id;
@@ -162,8 +161,7 @@ layui.use(['table','upload','layer'], function(){
 		,multiple: true
 		,method: 'post'
 		,accept: 'audio'
-		,url: '' //上传接口
-		//filesAction_upload?type=2
+		,url: 'filesAction_upload?type=2' //上传接口
 		,before: function(obj){
 			ii = layer.load(1); //上传loading
 		}
@@ -183,7 +181,7 @@ layui.use(['table','upload','layer'], function(){
 			console.log("aaa");
 		}
 	});
-
+	
 });
 </script>
 

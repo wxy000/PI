@@ -14,7 +14,7 @@
 		<div style="padding:0px 40px 10px 40px;">基本资料</div>
 		<hr>
 		<div style="margin-bottom:10px;padding:20px 40px;width:600px;height:500px;background:#fff;float:left;">
-			<form class="layui-form" action="" method="post"><!--userAction_update-->
+			<form class="layui-form" action="userAction_update" method="post">
 				<input type="hidden" name="userId" value="${userInfo.userId }">
 				<div class="layui-form-item">
 					<label class="layui-form-label">用户名：</label>
@@ -91,8 +91,7 @@ layui.use(['form','upload'], function(){
 		elem: '#test8'
 		,method: 'post'
 		,accept: 'images'
-	    ,url: ''
-			//userHeaderupload_uploadHeader
+	    ,url: 'userHeaderupload_uploadHeader'
 	    ,auto: false
 	    //,multiple: true
 	    ,bindAction: '#test9'

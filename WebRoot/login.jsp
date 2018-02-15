@@ -44,7 +44,7 @@
 	    </div>
 	    <div class="layui-login-text" style="margin-top: 15px;">
 			<a>忘记密码？</a>
-			<a href="" style="float: right;">还没有账号？</a><!--register.jsp-->
+			<a href="register.jsp" style="float: right;">还没有账号？</a>
 	    </div>
 	    <div class="layui-login-text">
 	    	<p>© 2017-2018 wxy 版权所有</p>
@@ -65,7 +65,7 @@ function createCode(){
     code="";
     var codeLength=5; //验证码的长度
     var checkCode=document.getElementById("login_code");
-    var codeChars=new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+    var codeChars=new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
     'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); //所有候选组成验证码的字符，当然也可以用中文的
     for(var i=0;i<codeLength;i++){

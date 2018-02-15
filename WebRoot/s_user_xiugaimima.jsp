@@ -15,7 +15,7 @@
 		<div style="padding:0px 40px 10px 40px;font-size:18px;">亲爱的${userInfo.userName }，你需要完成以下步骤：</div>
 		<hr>
 		<div style="padding:20px 40px;">
-			<form class="layui-form" action="" method="post" onSubmit="return yanzhen1()"><!--userAction_xiugaimima-->
+			<form class="layui-form" action="userAction_xiugaimima" method="post" onSubmit="return yanzhen1()">
 				<input type="hidden" name="userId" value="${userInfo.userId }">
 				<div class="layui-form-item">
 					<label class="layui-form-label">旧密码：</label>
@@ -45,14 +45,14 @@
 layui.use('form', function(){
 	var form = layui.form;
 	var layer = layui.layer;
-
+	
 	if("${mimacuowu}" != null && "${mimacuowu}" != ""){
 		layer.alert('${mimacuowu}', {icon: 5});
 	}
 	if("${mimawujie}" != null && "${mimawujie}" != ""){
 		layer.alert('${mimawujie}', {icon: 5});
 	}
-
+	
 	if("${mimadui}" != null && "${mimadui}" != ""){
 		layer.msg('${mimadui}<br>3秒后重新登陆', {
 			icon: 1,

@@ -47,7 +47,7 @@ layui.use(['flow','carousel','upload','layer'], function(){
 	var upload = layui.upload;
 	var $ = layui.jquery
 	var layer = layui.layer;
-
+	
 	//图片轮播
 	carousel.render({
 		elem: '#test10'
@@ -59,15 +59,14 @@ layui.use(['flow','carousel','upload','layer'], function(){
 	flow.lazyimg({
 		elem: '#LAY_demo3 img'
 	});
-
+	
 	//执行实例
 	upload.render({
 		elem: '#test1' //绑定元素
 		,multiple: true
 		,method: 'post'
 		,accept: 'images'
-		,url: '' //上传接口
-		//filesAction_upload?type=4
+		,url: 'filesAction_upload?type=4' //上传接口
 		,before: function(obj){
 			ii = layer.load(1); //上传loading
 		}
@@ -87,7 +86,7 @@ layui.use(['flow','carousel','upload','layer'], function(){
 			console.log("aaa");
 		}
 	});
-
+	
 	//右键事件
 	function youjian(x,y,fid){
 		layer.open({
@@ -110,11 +109,10 @@ layui.use(['flow','carousel','upload','layer'], function(){
 			window.location="filesDownload?fileid="+fid;
 		});
 		$('#shanchu').on('click',function(){
-			window.location="";
-			//filesAction_delete?fileid="+fid+"&type=4
+			window.location="filesAction_delete?fileid="+fid+"&type=4";
 		});
 	}
-
+	
 	//查看大图
 	function open(t,path){
 		var index = layer.open({
@@ -131,7 +129,7 @@ layui.use(['flow','carousel','upload','layer'], function(){
 		});
 		layer.full(index);
 	};
-
+	
 	//阻止浏览器默认右键点击事件
 	$(".img").bind("contextmenu", function(){
 	    return false;

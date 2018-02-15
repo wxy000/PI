@@ -74,7 +74,7 @@ layui.use(['table','upload','layer'], function(){
 		});
 		layer.full(index);
 	};
-
+	
 	//监听工具条
 	table.on('tool(demo)', function(obj){
 		var data = obj.data;
@@ -86,8 +86,7 @@ layui.use(['table','upload','layer'], function(){
 			layer.confirm('真的删除行么', function(index){
 				obj.del();
 				layer.close(index);
-				window.location = "";
-				//filesAction_delete?fileid="+data.id+"&type=3
+				window.location = "filesAction_delete?fileid="+data.id+"&type=3";
 			});
 		} else if(obj.event === 'download'){
 			window.location = "filesDownload?fileid="+data.id;
@@ -100,8 +99,7 @@ layui.use(['table','upload','layer'], function(){
 		,method: 'post'
 		,accept: 'video'
 		,exts: 'mp4'
-		,url: '' //上传接口
-		//filesAction_upload?type=3
+		,url: 'filesAction_upload?type=3' //上传接口
 		,before: function(obj){
 			ii = layer.load(1); //上传loading
 		}
@@ -121,7 +119,7 @@ layui.use(['table','upload','layer'], function(){
 			console.log("aaa");
 		}
 	});
-
+  
 });
 </script>
 </html>
